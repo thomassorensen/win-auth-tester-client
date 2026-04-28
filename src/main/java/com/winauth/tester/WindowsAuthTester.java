@@ -41,6 +41,15 @@ public class WindowsAuthTester {
             logger.info("=".repeat(80));
             logger.info("Windows Authentication Tester - Starting");
             logger.info("=".repeat(80));
+            
+            // Display Java version information
+            String javaVersion = System.getProperty("java.version");
+            String javaVendor = System.getProperty("java.vendor");
+            String javaHome = System.getProperty("java.home");
+            logger.info("Java Version: {}", javaVersion);
+            logger.info("Java Vendor: {}", javaVendor);
+            logger.info("Java Home: {}", javaHome);
+            logger.info("-".repeat(80));
 
             WindowsAuthClient client = new WindowsAuthClient(url, timeout);
             
