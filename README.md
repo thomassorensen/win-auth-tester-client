@@ -20,6 +20,8 @@ A comprehensive Java diagnostic tool for troubleshooting Windows authentication 
 
 ## Building
 
+### Standard Build
+
 Build the application using Maven:
 
 ```bash
@@ -29,6 +31,33 @@ mvn clean package
 This creates two JAR files in the `target` directory:
 - `win-auth-tester-client-1.0.0.jar` - Standard JAR
 - `win-auth-tester-client-1.0.0-jar-with-dependencies.jar` - Standalone JAR with all dependencies
+
+### Release with Bundled JRE
+
+To create a distribution with a bundled Java Runtime Environment (no Java installation required on target system):
+
+**Windows:**
+```batch
+create-release-with-jre.bat
+```
+
+**Linux/macOS/Git Bash:**
+```bash
+./create-release-with-jre.sh
+```
+
+This creates:
+- `target/win-auth-tester-client-1.0.0-windows-x64-jre.zip` - Complete distribution with bundled JRE (~45-60 MB)
+
+The ZIP includes:
+- Custom JRE (only required modules, ~40-50 MB)
+- Application JAR with all dependencies
+- Launch scripts (run-with-jre.bat/sh that use bundled JRE)
+- Documentation
+
+**Alternative:** Use Maven profile: `mvn clean package -P release-with-jre`
+
+See [BUILD.md](BUILD.md) for detailed build instructions and customization options.
 
 ## Usage
 
