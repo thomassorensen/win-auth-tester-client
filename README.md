@@ -13,7 +13,7 @@ A comprehensive Java diagnostic tool for troubleshooting Windows authentication 
 
 ## Requirements
 
-- Java 11 or higher
+- Java 8 or higher
 - Windows operating system (required for Windows authentication)
 - Maven 3.6+ (for building)
 - Network access to the target servlet

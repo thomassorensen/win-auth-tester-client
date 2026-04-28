@@ -1,4 +1,5 @@
 package com.winauth.tester;
+import static com.winauth.tester.StringUtils.repeat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,9 @@ public class TroubleshootingEngine {
     private static final Logger logger = LoggerFactory.getLogger(TroubleshootingEngine.class);
 
     public void analyzeFailed(AuthenticationResult result) {
-        logger.info("=".repeat(80));
+        logger.info(repeat("=", 80));
         logger.info("TROUBLESHOOTING ANALYSIS");
-        logger.info("=".repeat(80));
+        logger.info(repeat("=", 80));
 
         List<String> possibleCauses = new ArrayList<>();
         List<String> recommendations = new ArrayList<>();
@@ -29,7 +30,7 @@ public class TroubleshootingEngine {
         }
 
         displayAnalysis(possibleCauses, recommendations);
-        logger.info("=".repeat(80));
+        logger.info(repeat("=", 80));
     }
 
     private void analyzeUnauthorized(AuthenticationResult result, List<String> causes, List<String> recommendations) {
@@ -153,21 +154,21 @@ public class TroubleshootingEngine {
     private void displayAnalysis(List<String> causes, List<String> recommendations) {
         logger.info("");
         logger.info("POSSIBLE CAUSES:");
-        logger.info("-".repeat(80));
+        logger.info(repeat("-", 80));
         for (int i = 0; i < causes.size(); i++) {
             logger.info("{}. {}", (i + 1), causes.get(i));
         }
 
         logger.info("");
         logger.info("RECOMMENDED ACTIONS:");
-        logger.info("-".repeat(80));
+        logger.info(repeat("-", 80));
         for (int i = 0; i < recommendations.size(); i++) {
             logger.info("{}. {}", (i + 1), recommendations.get(i));
         }
 
         logger.info("");
         logger.info("ADDITIONAL RESOURCES:");
-        logger.info("-".repeat(80));
+        logger.info(repeat("-", 80));
         logger.info("• Waffle Documentation: https://github.com/Waffle/waffle");
         logger.info("• Windows Authentication Overview: https://docs.microsoft.com/en-us/windows-server/security/");
         logger.info("• NTLM Authentication: https://docs.microsoft.com/en-us/windows/win32/secauthn/microsoft-ntlm");

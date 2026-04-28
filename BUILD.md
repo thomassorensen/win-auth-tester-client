@@ -4,7 +4,7 @@ This document explains how to build different types of release distributions for
 
 ## Prerequisites
 
-- JDK 11 or higher installed
+- JDK 8 or higher installed
 - Maven 3.6+ installed
 - Windows operating system (for testing the release)
 

@@ -1,4 +1,5 @@
 package com.winauth.tester;
+import static com.winauth.tester.StringUtils.repeat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ public class DiagnosticRunner {
 
     public void runPreConnectionDiagnostics(String targetUrl) {
         logger.info("Running pre-connection diagnostics...");
-        logger.info("-".repeat(80));
+        logger.info(repeat("-", 80));
 
         checkOperatingSystem();
         checkCurrentUser();
@@ -26,7 +27,7 @@ public class DiagnosticRunner {
         checkDnsResolution(targetUrl);
         checkWindowsSecuritySettings();
 
-        logger.info("-".repeat(80));
+        logger.info(repeat("-", 80));
     }
 
     private void checkOperatingSystem() {

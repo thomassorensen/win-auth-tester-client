@@ -1,4 +1,5 @@
 package com.winauth.tester;
+import static com.winauth.tester.StringUtils.repeat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +11,9 @@ public class ResultPresenter {
     private static final Logger logger = LoggerFactory.getLogger(ResultPresenter.class);
 
     public void displayResults(AuthenticationResult result) {
-        logger.info("=".repeat(80));
+        logger.info(repeat("=", 80));
         logger.info("AUTHENTICATION RESULTS");
-        logger.info("=".repeat(80));
+        logger.info(repeat("=", 80));
 
         logger.info("URL: {}", result.getUrl());
         logger.info("Authentication Method: {}", result.getAuthenticationMethod());
@@ -44,6 +45,6 @@ public class ResultPresenter {
             }
         }
 
-        logger.info("=".repeat(80));
+        logger.info(repeat("=", 80));
     }
 }

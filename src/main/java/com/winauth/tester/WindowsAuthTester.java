@@ -4,6 +4,8 @@ import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.winauth.tester.StringUtils.repeat;
+
 /**
  * Main application for testing Windows authentication against Waffle-enabled servlets.
  * Provides verbose logging and diagnostic capabilities.
@@ -38,9 +40,9 @@ public class WindowsAuthTester {
             String domain = cmd.getOptionValue("domain");
             int timeout = Integer.parseInt(cmd.getOptionValue("timeout", "30000"));
 
-            logger.info("=".repeat(80));
+            logger.info(repeat("=", 80));
             logger.info("Windows Authentication Tester - Starting");
-            logger.info("=".repeat(80));
+            logger.info(repeat("=", 80));
             
             // Display Java version information
             String javaVersion = System.getProperty("java.version");
@@ -62,7 +64,7 @@ public class WindowsAuthTester {
             } catch (Exception e) {
                 logger.warn("Could not determine JNA version: {}", e.getMessage());
             }
-            logger.info("-".repeat(80));
+            logger.info(repeat("-", 80));
 
             WindowsAuthClient client = new WindowsAuthClient(url, timeout);
             
@@ -90,9 +92,9 @@ public class WindowsAuthTester {
                 troubleshooter.analyzeFailed(result);
             }
 
-            logger.info("=".repeat(80));
+            logger.info(repeat("=", 80));
             logger.info("Windows Authentication Tester - Complete");
-            logger.info("=".repeat(80));
+            logger.info(repeat("=", 80));
 
             System.exit(result.isSuccessful() ? 0 : 1);
 
