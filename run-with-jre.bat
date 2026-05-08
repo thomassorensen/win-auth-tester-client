@@ -10,17 +10,38 @@ REM Determine the script directory
 set SCRIPT_DIR=%~dp0
 cd /d "%SCRIPT_DIR%"
 
-REM Check if bundled JRE exists
-if exist "%SCRIPT_DIR%jre\bin\java.exe" (
-    set JAVA_CMD=%SCRIPT_DIR%jre\bin\java.exe
-    echo Using bundled JRE
-) else (
-    set JAVA_CMD=java
-    echo Using system Java
+REM Resolve Java command (precedence: JAVA_PATH -> bundled JRE -> system Java)
+set JAVA_CMD=
+
+if not "%JAVA_PATH%"=="" (
+    if exist "%JAVA_PATH%" (
+        set JAVA_CMD=%JAVA_PATH%
+        echo Using user-configured Java from JAVA_PATH
+    ) else if exist "%JAVA_PATH%\bin\java.exe" (
+        set JAVA_CMD=%JAVA_PATH%\bin\java.exe
+        echo Using user-configured Java from JAVA_PATH
+    ) else (
+        echo WARNING: JAVA_PATH is set but not valid: %JAVA_PATH%
+    )
+)
+
+if "%JAVA_CMD%"=="" (
+    if exist "%SCRIPT_DIR%jre\bin\java.exe" (
+        set JAVA_CMD=%SCRIPT_DIR%jre\bin\java.exe
+        echo Using bundled JRE
+    ) else (
+        set JAVA_CMD=java
+        echo Using system Java
+    )
 )
 
 if "%1"=="" (
     echo Usage: run-with-jre.bat [URL] [OPTIONS]
+    echo.
+    echo Optional Java override:
+    echo   set JAVA_PATH=C:\path\to\java.exe
+    echo   or
+    echo   set JAVA_PATH=C:\path\to\jdk
     echo.
     echo Example:
     echo   run-with-jre.bat http://server:8080/protected-resource

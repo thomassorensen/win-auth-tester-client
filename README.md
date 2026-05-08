@@ -10,6 +10,7 @@ A comprehensive Java diagnostic tool for troubleshooting Windows authentication 
 - 🛠️ **Troubleshooting Engine** - Intelligent analysis of failures with specific recommendations
 - 📊 **Multiple Authentication Modes** - Support for NTLM, Negotiate (Kerberos), and explicit credentials
 - 📝 **Comprehensive Logging** - Both console and file logging with detailed HTTP wire logs
+- 🔒 **Interactive HTTPS Certificate Trust** - For untrusted HTTPS certs, shows certificate details, prompts for trust, and can import into Java cacerts
 
 ## Requirements
 
@@ -187,6 +188,16 @@ Logs are written to:
 - Verify URL is correct
 - Check DNS server configuration
 - Try using IP address instead
+
+### HTTPS Certificate Not Trusted
+
+**Cause**: Java trust store does not trust the target HTTPS certificate
+
+**Solution**:
+- The client now downloads and displays certificate details (subject, issuer, validity, SHA-256 fingerprint)
+- You will be prompted to confirm trust before any import occurs
+- If you confirm, the certificate is imported into the default Java keystore (`cacerts`) and the request is retried once
+- Import may require write permission to your Java installation
 
 ## Architecture
 

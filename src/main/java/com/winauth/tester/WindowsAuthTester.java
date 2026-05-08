@@ -57,10 +57,6 @@ public class WindowsAuthTester {
                 String jnaVersion = com.sun.jna.Native.VERSION;
                 String jnaNativeVersion = com.sun.jna.Native.VERSION_NATIVE;
                 logger.info("JNA Version: {} (Native: {})", jnaVersion, jnaNativeVersion);
-                if (!jnaVersion.startsWith("5.6")) {
-                    logger.warn("⚠ WARNING: JNA version {} detected. Version 5.6.0 is required for compatibility with httpclient-win!", jnaVersion);
-                    logger.warn("  This may cause NoSuchMethodError during Windows authentication.");
-                }
             } catch (Exception e) {
                 logger.warn("Could not determine JNA version: {}", e.getMessage());
             }
