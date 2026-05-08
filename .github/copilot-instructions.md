@@ -30,10 +30,8 @@ This is a Java diagnostic tool for troubleshooting Windows authentication (NTLM/
 - Use `WinHttpClients.createDefault()` for automatic Windows integrated auth
 
 ### Error Handling
-- Always catch exceptions at the appropriate level
-- Log exceptions with context and stack traces
 - Convert technical errors into user-friendly messages in the TroubleshootingEngine
-- Provide specific recommendations based on error type and context
+- Include failure context (for example: URL, status code, auth scheme, and exception message) so recommendations are specific
 
 ### Logging Configuration
 - Use Logback for logging implementation
@@ -45,7 +43,6 @@ This is a Java diagnostic tool for troubleshooting Windows authentication (NTLM/
 - Use JUnit 5 for unit tests
 - Mock external dependencies where appropriate
 - Test both success and failure scenarios
-- Keep tests simple and focused
 
 ## Common Patterns
 
@@ -96,7 +93,7 @@ private void checkSomething() {
 
 - Don't add dependencies for functionality already provided by existing libraries
 - Don't suppress exceptions without logging them
-- Don't use System.out.println() - always use SLF4J logger
+- Don't use System.out.println(); always use SLF4J logger
 - Don't create overly complex class hierarchies
 - Don't hardcode values that should be configurable
 - Don't commit credentials or sensitive information
@@ -131,11 +128,10 @@ private void checkSomething() {
 
 When adding features:
 1. Consider adding a command-line option if user-facing
-2. Add appropriate logging at each step
-3. Update the README with usage examples
-4. Add unit tests for the new functionality
-5. Update troubleshooting recommendations if relevant
-6. Consider diagnostic checks if applicable
+2. Update the README with usage examples
+3. Add unit tests for the new functionality
+4. Update troubleshooting recommendations if relevant
+5. Consider adding or refining diagnostic checks when relevant
 
 ## Debugging Tips
 
